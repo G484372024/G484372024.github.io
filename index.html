@@ -1,162 +1,204 @@
 <!DOCTYPE html>
-<!-- oss-template-2026:placeholder （この目印で，scripts/check.sh が「準備中」のページかどうかを見分けます） -->
-<!--
-  テンプレートの「準備中」のページです．
-  このページが https://ユーザー名.github.io/ に表示されたら，GitHub Pages の設定は成功です．
-  第7回の実習4で，このファイルを第6回で作った index.html に置きかえます．
--->
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>準備中</title>
-  <style>
-    /* ===== 色の設定 ===== */
-    :root {
-      --main-color: #2e7d32;  /* メインの色（見出し・番号） */
-      --bg-color: #f5f8f5;    /* ページの背景の色 */
-      --card-color: #ffffff;  /* カードの背景の色 */
-      --text-color: #222222;  /* 文字の色 */
-      --sub-color: #666666;   /* 補足の文字の色 */
-      --line-color: #dfe6df;  /* 区切り線の色 */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>しん | ポートフォリオ</title>
 
-    /* パソコンやスマートフォンがダークモードのときの色 */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --main-color: #81c784;
-        --bg-color: #121512;
-        --card-color: #1e231e;
-        --text-color: #e8ece8;
-        --sub-color: #a0a8a0;
-        --line-color: #2f362f;
-      }
-    }
+    <style>
+        /* ======================================
+           全体設定
+        ====================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ページ全体：カードを画面のまんなかに置く */
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-      box-sizing: border-box;
-      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-      line-height: 1.8;
-      color: var(--text-color);
-      background: var(--bg-color);
-    }
+        body {
+            font-family: "Yu Gothic", "Hiragino Sans", sans-serif;
+            line-height: 1.8;
+            background-color: #f5fbff;
+            color: #333;
+        }
 
-    /* まんなかのカード */
-    main {
-      width: 100%;
-      max-width: 600px;
-      padding: 32px 28px;
-      background: var(--card-color);
-      border-top: 6px solid var(--main-color);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    }
+        /* ======================================
+           コンテナ
+        ====================================== */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-    h1 {
-      margin: 0 0 4px;
-      font-size: clamp(1.3rem, 6vw, 1.6rem);  /* スマートフォンでは少し小さくする */
-      line-height: 1.4;
-      color: var(--main-color);
-    }
+        /* ======================================
+           ヘッダー
+        ====================================== */
+        header {
+            background: linear-gradient(135deg, #87ceeb, #bfefff);
+            text-align: center;
+            padding: 80px 20px;
+        }
 
-    h2 {
-      margin: 28px 0 8px;
-      padding-bottom: 4px;
-      font-size: 1.05rem;
-      border-bottom: 1px solid var(--line-color);
-    }
+        header h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
 
-    /* 「設定は成功」のバッジ */
-    .badge {
-      display: inline-block;
-      margin: 8px 0 0;
-      padding: 2px 12px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: var(--card-color);
-      background: var(--main-color);
-      border-radius: 999px;
-    }
+        header p {
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
 
-    /* 「次にやること」の番号つきリスト */
-    ol {
-      margin: 0;
-      padding-left: 1.4em;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    li::marker {
-      font-weight: bold;
-      color: var(--main-color);
-    }
+        /* ======================================
+           各セクション共通
+        ====================================== */
+        section {
+            background: #ffffff;
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
 
-    /* コマンドの見た目 */
-    code {
-      padding: 1px 6px;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 0.88em;
-      background: var(--bg-color);
-      border-radius: 4px;
-      white-space: nowrap;  /* コマンドの途中で折り返さない */
-    }
+        section h2 {
+            color: #4aa3d8;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d9f2ff;
+        }
 
-    /* 補足の小さな文字 */
-    .sub {
-      font-size: 0.9rem;
-      color: var(--sub-color);
-    }
+        /* ======================================
+           リストデザイン
+        ====================================== */
+        ul {
+            list-style: none;
+        }
 
-    /* いちばん下の小さな文字 */
-    footer {
-      margin-top: 28px;
-      padding-top: 12px;
-      font-size: 0.8rem;
-      color: var(--sub-color);
-      border-top: 1px solid var(--line-color);
-    }
-    a {
-      color: var(--main-color);
-    }
-  </style>
+        li {
+            padding: 8px 0;
+        }
+
+        li::before {
+            content: "● ";
+            color: #69bde8;
+        }
+
+        /* ======================================
+           プログラミング経験カード
+        ====================================== */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            background-color: #d9f2ff;
+            color: #2d6f91;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        /* ======================================
+           フッター
+        ====================================== */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+        }
+
+        /* ======================================
+           スマホ対応
+        ====================================== */
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 20px;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <main>
-    <h1>このサイトは準備中です</h1>
-    <p class="badge">GitHub Pages の設定 OK</p>
-    <p>このページが表示されていれば，あなたのリポジトリは正しく公開されています．
-      あとは，このページを自分のサイトに置きかえるだけです．</p>
 
-    <h2>次にやること</h2>
-    <ol>
-      <li>このリポジトリを，SSHのURLで <code>git clone</code> する</li>
-      <li><code>index.html</code> を，第6回で作ったサイトに置きかえる</li>
-      <li><code>bash scripts/check.sh</code> で，公開前のチェックをする</li>
-      <li><code>git add</code> → <code>git commit</code> → <code>git push origin main</code> する</li>
-      <li>数分待ってから，このページを再読み込みする</li>
-    </ol>
-    <p class="sub">再読み込みしても変わらないときは，強制再読み込み（Windows：Ctrl + F5，Mac：Command + Shift + R）を試しましょう．</p>
+    <!-- ヘッダーエリア -->
+    <header>
+        <div class="container">
+            <h1>しん</h1>
+            <p>毎日ダラダラ過ごしています</p>
+        </div>
+    </header>
 
-    <h2>公開する前に</h2>
-    <ul>
-      <li>本名のフルネーム・学籍番号・住所・電話番号・メールアドレスが入っていないか</li>
-      <li>自己紹介に書いていないことを，AIが付け足していないか</li>
-    </ul>
-    <p class="sub">このリポジトリは Public です．サイトだけでなく，ファイルの中身やコミットの履歴も，誰でも見ることができます．</p>
+    <main class="container">
 
+        <!-- 基本情報 -->
+        <section>
+            <h2>基本情報</h2>
+            <p><strong>学年：</strong>3年</p>
+            <p><strong>所属：</strong>拓殖大学工学部</p>
+        </section>
+
+        <!-- 自己紹介 -->
+        <section>
+            <h2>自己紹介</h2>
+            <p>
+                自然豊かな場所は気持ちがいいです。
+                人が少なく、自分だけの時間を過ごすことができるところが好きです。
+            </p>
+        </section>
+
+        <!-- 趣味 -->
+        <section>
+            <h2>趣味・好きなこと</h2>
+            <ul>
+                <li>寝ること</li>
+                <li>音楽鑑賞</li>
+                <li>自然の多いところに行くこと</li>
+                <li>旅行</li>
+            </ul>
+        </section>
+
+        <!-- プログラミング経験 -->
+        <section>
+            <h2>プログラミング経験</h2>
+            <div class="skills">
+                <div class="skill">Java</div>
+                <div class="skill">Go</div>
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+                <div class="skill">JavaScript</div>
+            </div>
+        </section>
+
+        <!-- 学びたいこと -->
+        <section>
+            <h2>この授業で学びたいこと</h2>
+            <p>OSSの使いかたを学びたいです。</p>
+        </section>
+
+        <!-- サイトイメージ -->
+        <section>
+            <h2>サイトのイメージ</h2>
+            <p><strong>好きな色：</strong>水色</p>
+            <p><strong>雰囲気：</strong>シンプル</p>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
     <footer>
-      拓殖大学工学部『オープンソースソフトウェア』2026年度<br>
-      <a href="https://github.com/tomohitoy/oss-practice-2026/blob/main-07/chap07/README.md">第7回の資料</a>
-      ・
-      <a href="https://github.com/tomohitoy/oss-template-2026">テンプレート（tomohitoy/oss-template-2026）</a>
+        <p>&copy; Shin Portfolio</p>
     </footer>
-  </main>
+
 </body>
 </html>
